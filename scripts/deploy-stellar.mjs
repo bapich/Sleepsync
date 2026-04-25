@@ -42,6 +42,8 @@ const args = [
   alias
 ];
 
+console.log(`Deploying ${path.relative(rootDir, wasmPath)} to ${network} as ${sourceAccount}...`);
+
 const output = execFileSync("stellar", args, {
   cwd: rootDir,
   encoding: "utf8"
