@@ -37,13 +37,17 @@ function sendPayload(payload) {
 
   const body = JSON.stringify(payload);
 
-  if (navigator.sendBeacon) {
+  if (typeof navigator !== "undefined" && navigator.sendBeacon) {
     navigator.sendBeacon(
       trackingUrl,
       new Blob([body], {
         type: "application/json"
       })
     );
+    return;
+  }
+
+  if (typeof fetch !== "function") {
     return;
   }
 
