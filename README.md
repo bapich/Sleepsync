@@ -206,3 +206,9 @@ npm run build:web
 ```
 
 The CI pipeline runs contract tests, builds the Soroban WASM artifact, installs frontend dependencies, generates the frontend contract config, builds the Vite app, and uploads the frontend bundle artifact.
+
+## Troubleshooting
+
+- If Freighter is not detected, open the app in a Chromium-based browser with the Freighter extension enabled.
+- If the dashboard stays empty after connecting, confirm Freighter is using Stellar Testnet.
+- If contract reads fail, rerun `npm run export:frontend` after updating `deployments/testnet.json` or `VITE_CONTRACT_ID`.
