@@ -100,6 +100,12 @@ enum DataKey {
     Session(Address, u32),
 }
 
+mod reward_contract {
+    soroban_sdk::contractimport!(
+        file = "../../target/wasm32v1-none/release/sleep_sync.wasm"
+    );
+}
+
 #[contract]
 pub struct SleepSync;
 
@@ -231,6 +237,11 @@ impl SleepSync {
 
     pub fn has_profile(env: Env, sleeper: Address) -> bool {
         env.storage().persistent().has(&DataKey::Profile(sleeper))
+    }
+
+    pub fn query_sleeper_reward(env: Env, reward_contract_id: Address, sleeper: Address) -> u32 {
+        let client = reward_contract::Client::new(&env, &reward_contract_id);
+        client.get_dashboard(&sleeper).recovery_score
     }
 
     pub fn get_dashboard(env: Env, sleeper: Address) -> SleepDashboard {
@@ -384,6 +395,19 @@ mod test {
         assert_eq!(dashboard.total_minutes, 0);
         assert_eq!(dashboard.recovery_score, 0);
         assert!(!dashboard.goal_reached_this_week);
+    }
+
+    #[test]
+    fn query_sleeper_reward_cross_calls_correctly() {
+        let (env, client, sleeper) = setup();
+        let target_contract_id = env.register(SleepSync, ());
+        let target_client = SleepSyncClient::new(&env, &target_contract_id);
+
+        target_client.save_profile(&sleeper, &text(&env, "Sleeper Identity"), &3_000);
+        target_client.log_session(&sleeper, &text(&env, "Deep Sleep"), &420, &true);
+
+        let result = client.query_sleeper_reward(&target_contract_id, &sleeper);
+        assert!(result > 0);
     }
 
     #[test]
