@@ -450,7 +450,16 @@ export default function App() {
             <button className="button button-primary" onClick={handleConnectWallet} disabled={wallet.isConnecting}>
               {wallet.isConnecting ? "Connecting..." : wallet.account ? shortAddress(wallet.account) : "Connect wallet"}
             </button>
-          ) : null}
+          ) : (
+            <a 
+              className="button button-primary" 
+              href="https://www.freighter.app/" 
+              target="_blank" 
+              rel="noreferrer"
+            >
+              Get Freighter
+            </a>
+          )}
         </div>
       </header>
 
