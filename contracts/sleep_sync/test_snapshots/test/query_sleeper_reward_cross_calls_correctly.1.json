@@ -145,6 +145,59 @@
               "key": {
                 "vec": [
                   {
+                    "symbol": "Leaderboard"
+                  }
+                ]
+              },
+              "durability": "persistent",
+              "val": {
+                "vec": [
+                  {
+                    "map": [
+                      {
+                        "key": {
+                          "symbol": "display_name"
+                        },
+                        "val": {
+                          "string": "Sleeper Identity"
+                        }
+                      },
+                      {
+                        "key": {
+                          "symbol": "recovery_score"
+                        },
+                        "val": {
+                          "u32": 12
+                        }
+                      },
+                      {
+                        "key": {
+                          "symbol": "sleeper"
+                        },
+                        "val": {
+                          "address": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAFCT4"
+                        }
+                      }
+                    ]
+                  }
+                ]
+              }
+            }
+          },
+          "ext": "v0"
+        },
+        "live_until": 4095
+      },
+      {
+        "entry": {
+          "last_modified_ledger_seq": 0,
+          "data": {
+            "contract_data": {
+              "ext": "v0",
+              "contract": "CAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAHK3M",
+              "key": {
+                "vec": [
+                  {
                     "symbol": "Profile"
                   },
                   {
