@@ -6,9 +6,19 @@ artifacts/
 coverage/
 frontend/dist/
 .env
+.env.local
+.env.*.local
 frontend/.env
+frontend/.env.local
 *.log
 .DS_Store
 .vite/
 .vercel/
 package-lock.json.bak
+complete_users_data.tsv
+run_4_more.ps1
+patch.diff
+patch2.diff
+*.mp4
+hero ui.png
+mobile ss.png
